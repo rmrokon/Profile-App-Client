@@ -1,0 +1,58 @@
+.authenticationFormContainer {
+    height: 50vh;
+    width: 35vw;
+    margin: auto;
+    text-align: center;
+    padding: 10vh;
+    font-family: 'Raleway', sans-serif;
+}
+
+.authenticationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.authenticationForm input {
+    width: 15vw;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.authenticationForm input:focus {
+    border: 1px solid darkcyan;
+    outline: none;
+}
+
+.authenticationForm input[type='submit'] {
+    margin-top: 2%;
+    width: auto;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    background-color: rgb(15, 77, 77);
+    color: white;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.authenticationForm input[type='submit']:hover {
+    background-color: rgba(153, 189, 189, 0.395);
+    color: darkcyan;
+    font-weight: 700;
+}
+
+.termsAndCondition>input {
+    width: auto;
+    margin: auto;
+    margin-right: 20px;
+}
+
+.termsAndCondition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

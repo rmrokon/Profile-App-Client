@@ -1,0 +1,17 @@
+.aboutContainer {
+    text-align: center;
+}
+
+.aboutText {
+    width: 60%;
+    height: 15vh;
+    border: 1px solid gray;
+    border-radius: 4px;
+    resize: vertical;
+    padding: 5px;
+}
+
+.aboutText:focus {
+    border: 2px solid darkcyan;
+    outline: none;
+}

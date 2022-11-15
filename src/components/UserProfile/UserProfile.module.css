@@ -1,0 +1,45 @@
+.profileContainer {
+    margin: 2vh 10vw;
+
+}
+
+.profileHeaderContainer {
+    position: relative;
+}
+
+.coverPic {
+    width: 80vw;
+    height: 40vh;
+    background-color: rgba(0, 0, 0, 0.181);
+    position: relative;
+}
+
+.proPicAndNameContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 80%;
+}
+
+.proPic {
+    height: 150px;
+    width: 150px;
+    border: 5px solid white;
+    border-radius: 50%;
+}
+
+.proPic>img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.profileName {
+    color: black;
+    margin-left: 1vw;
+}
+
+.profileInformation {
+    position: static;
+    margin-top: 25vh;
+}
