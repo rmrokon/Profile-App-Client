@@ -1,14 +1,16 @@
 import axios from 'axios';
-import React from 'react'
+import React from 'react';
+import styles from './SingleInterest.module.css';
 
-function SingleInterest({ interest, interests, setInterests }) {
+function SingleInterest({ interest, interests, refetch }) {
 
     const handleDelete = (id) => {
         axios.delete(`http://localhost:8000/api/interests/${id}`)
             .then(res => {
                 if (res.status === 200) {
-                    const newInterests = interests.filter(int => int.id !== id);
-                    setInterests(newInterests);
+                    // const newInterests = interests.filter(int => int.id !== id);
+                    // setInterests(newInterests);
+                    refetch();
                     alert('Deleted!');
                 } else {
                     console.log('failed', res.data);
@@ -17,13 +19,15 @@ function SingleInterest({ interest, interests, setInterests }) {
     }
 
     return (
-        <div>
+        <div className={styles.singleInterestContainer}>
             <input
                 type={'text'}
                 defaultValue={interest?.interest}
                 disabled={true}
             />
-            <button onClick={() => handleDelete(interest?.id)}>X</button>
+            <button
+                className={styles.deleteBtn}
+                onClick={() => handleDelete(interest?.id)}><i class="fas fa-trash"></i></button>
         </div>
     )
 }

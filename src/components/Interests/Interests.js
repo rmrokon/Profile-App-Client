@@ -1,30 +1,32 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useQuery } from 'react-query';
 import { ProfileContext } from '../contexts/ProfileContext';
 import SingleInterest from '../SingleInterest/SingleInterest';
 import styles from './Interests.module.css';
 
 function Interests() {
     const { profile } = useContext(ProfileContext);
-    const [interests, setInterests] = useState([]);
     const formRef = useRef();
     const [profileAttribute, setProfileAttribute] = useState(0);
+
+    const { data: interests, isLoading, refetch } = useQuery(['profileAttribute', profileAttribute], () => fetch(`http://localhost:8000/api/interests/search/${profileAttribute?.id}`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(res => res.json()));
+
+
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/profileAttributes/search/${profile?.id}`)
             .then(res => setProfileAttribute(res.data[0]));
     }, [profile?.id]);
 
-    useEffect(() => {
-        if (profileAttribute) {
-            axios.get(`http://localhost:8000/api/interests/search/${profileAttribute?.id}`).then(res => {
-                console.log('get interests response', res);
-                if (res.status === 200) {
-                    setInterests(res.data);
-                }
-            })
-        }
-    }, [profileAttribute]);
+    if (isLoading) {
+        return <h3>Loading...</h3>
+    }
 
     const noInterestMessage = interests?.length === 0 ? "Add new Interest!" : '';
     console.log(interests);
@@ -41,18 +43,11 @@ function Interests() {
                 interest
             }).then(res => {
                 if (res.status === 200) {
-                    const newInterests = [...interests, {
-                        id: 1,
-                        interest
-                    }];
-                    setInterests(newInterests);
-
-                    console.log(res);
+                    refetch();
                     alert('Interest Added');
                     formRef.current.reset();
                 } else {
                     alert('Something Went wrong!');
-                    console.log('failed', res.data);
                 }
             })
         } else {
@@ -60,19 +55,12 @@ function Interests() {
                 interest,
                 profile_attributes_id: profileAttribute?.id
             }).then(res => {
-                console.log(res);
                 if (res.status === 201) {
-                    const newInterests = [...interests, {
-                        id: 1,
-                        interest
-                    }];
-                    setInterests(newInterests);
-
                     alert('Interest Added');
+                    refetch();
                     formRef.current.reset();
                 } else {
                     alert('Something Went wrong!');
-                    console.log('failed', res.data);
                 }
             })
         }
@@ -85,14 +73,14 @@ function Interests() {
                 <input type="text" name="interest" required />
                 <input type="submit" value="Add Interest" />
             </form>
-            <div>
+            <div className={styles.interests}>
                 {noInterestMessage && <span>{noInterestMessage}</span>}
                 {
                     interests?.map(interest => <SingleInterest
                         key={interest?.id}
                         interest={interest}
                         interests={interests}
-                        setInterests={setInterests}
+                        refetch={refetch}
                     />)
                 }
             </div>
