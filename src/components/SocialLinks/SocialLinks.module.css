@@ -1,5 +1,4 @@
 .socialLinkFormContainer {
-    /* background-color: orange; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -7,16 +6,18 @@
 }
 
 .socialLinksForm {
-    width: 35%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .socialHandles {
     width: 100%;
-    /* background-color: green; */
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* flex-direction: column; */
     margin: 10px 0;
 }
 
@@ -38,16 +39,24 @@
     border: none;
 }
 
-.socialLinksForm {
+.privacySetting {
+    margin-left: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+}
+
+.privacySetting>span {
+    background-color: rgba(128, 128, 128, 0.247);
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
 .saveBtn,
 .editBtn,
-.cancelBtn {
+.cancelBtn,
+.privacySetting>button {
     border: none;
     color: darkcyan;
     padding: 8px 12px;
@@ -56,7 +65,8 @@
 
 .saveBtn:hover,
 .editBtn:hover,
-.cancelBtn:hover {
+.cancelBtn:hover,
+.privacySetting>button:hover {
     color: white;
     background-color: darkcyan;
 }
