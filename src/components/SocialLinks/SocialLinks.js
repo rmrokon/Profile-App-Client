@@ -31,7 +31,7 @@ function SocialLinks() {
                 linkedin,
                 instagram
             }).then(res => {
-                if (res.status === 200) {
+                if (res.status === 201) {
                     setEdit(false);
                 } else {
                     alert('Something Went wrong!');
@@ -57,6 +57,10 @@ function SocialLinks() {
                 })
         }
     }
+
+    // const isFacebookPrivate = profileAttribute?.is_facebook_private === 0 ? 'No' : 'Yes';
+
+    console.log(profileAttribute);
     return (
         <div>
             <div className={styles.socialLinkFormContainer}>

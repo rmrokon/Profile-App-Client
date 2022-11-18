@@ -7,6 +7,7 @@ import ProfileNavBar from '../ProfileNavBar/ProfileNavBar';
 import styles from './UserProfile.module.css';
 import axios from 'axios';
 import { ProfileContext } from '../contexts/ProfileContext';
+import { useQuery } from 'react-query';
 
 function UserProfile() {
     const { id } = useParams();
@@ -14,20 +15,18 @@ function UserProfile() {
     const { setProfile, profile } = useContext(ProfileContext);
     const [selectedFile, setSelectedFile] = useState(null);
     const imageInputRef = useRef(null);
-    const [profileImageUrl, setProfileImageUrl] = useState('');
-    const [coverImageUrl, setCoverImageUrl] = useState('');
     const imageAPIkey = "ba174ce3bc57048f9cd66363c4b7ddfe";
 
-    useEffect(() => {
-        const url = `http://localhost:8000/api/profiles/${id}`;
-        axios.get(url).then(res => {
-            setProfile(res?.data)
-        });
-    }, [id]);
+    const { isLoading, refetch } = useQuery(['id', id], () => fetch(`http://localhost:8000/api/profiles/${id}`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(res => res.json()).then(data => setProfile(data)));
 
-    console.log(profile);
 
-    if (loading) {
+
+    if (loading || isLoading) {
         return <h3>Loading...</h3>
     }
 
@@ -54,8 +53,24 @@ function UserProfile() {
             const image = result?.data?.url;
             console.log(image);
 
-            if (picType === 'propic') setProfileImageUrl(image);
-            if (picType === 'cover') setCoverImageUrl(image);
+            if (picType === 'propic') {
+
+                axios.patch(`http://localhost:8000/api/profiles/${id}`, {
+                    profile_photo_url: image,
+                }).then(res => {
+                    refetch();
+                    console.log(res.data);
+                });
+            };
+            if (picType === 'cover') {
+
+                axios.patch(`http://localhost:8000/api/profiles/${id}`, {
+                    cover_photo_url: image,
+                }).then(res => {
+                    refetch();
+                    console.log(res.data);
+                });
+            };
         })
     }
 
@@ -65,7 +80,7 @@ function UserProfile() {
             <header className={styles.profileHeaderContainer}>
 
                 <div className={styles.coverPic}>
-                    <img src={coverImageUrl} alt="" />
+                    <img src={profile?.cover_photo_url} alt="" />
                     <input onChange={handleImageChange} style={{ display: 'none' }} type="file" name="" id="" placeholder='' ref={imageInputRef} />
                     <div className={styles.changeCoverPhoto}>
                         <button onClick={handleChoosePhoto}>
@@ -76,7 +91,7 @@ function UserProfile() {
 
                     <div className={styles.proPicAndNameContainer}>
                         <div className={styles.proPic}>
-                            <img src={profileImageUrl} alt="" />
+                            <img src={profile?.profile_photo_url} alt="" />
                             <input onChange={handleImageChange} style={{ display: 'none' }} type="file" name="" id="" placeholder='' ref={imageInputRef} />
                             <div className={styles.changeProfilePhoto}>
                                 <button onClick={handleChoosePhoto}>
