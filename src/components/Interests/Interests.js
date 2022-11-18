@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ProfileContext } from '../contexts/ProfileContext';
 import SingleInterest from '../SingleInterest/SingleInterest';
+import styles from './Interests.module.css';
 
 function Interests() {
     const { profile } = useContext(ProfileContext);
@@ -50,6 +51,7 @@ function Interests() {
                     alert('Interest Added');
                     formRef.current.reset();
                 } else {
+                    alert('Something Went wrong!');
                     console.log('failed', res.data);
                 }
             })
@@ -69,6 +71,7 @@ function Interests() {
                     alert('Interest Added');
                     formRef.current.reset();
                 } else {
+                    alert('Something Went wrong!');
                     console.log('failed', res.data);
                 }
             })
@@ -77,13 +80,11 @@ function Interests() {
 
 
     return (
-        <div>
-            <div>
-                <form action="" onSubmit={handleSubmit} ref={formRef}>
-                    <input type="text" name="interest" required />
-                    <input type="submit" value="Add Interest" />
-                </form>
-            </div>
+        <div className={styles.interestsContainer}>
+            <form className={styles.addInterestForm} action="" onSubmit={handleSubmit} ref={formRef}>
+                <input type="text" name="interest" required />
+                <input type="submit" value="Add Interest" />
+            </form>
             <div>
                 {noInterestMessage && <span>{noInterestMessage}</span>}
                 {

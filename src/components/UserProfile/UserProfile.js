@@ -56,8 +56,6 @@ function UserProfile() {
         })
     }
 
-
-
     return (
         <div className={styles.profileContainer}>
             <button onClick={handleLogOut}>Logout</button>
@@ -75,7 +73,7 @@ function UserProfile() {
                                 <button className={styles.uploadPhoto} onClick={handleFileUpload}>Upload</button>
                             </div>
                         </div>
-                        <h4 className={styles.profileName}>{user?.user?.displayName} ||Username: {profile?.username} ||</h4>
+                        <h4 className={styles.profileName}>{user?.displayName}</h4>
                     </div>
                 </div>
                 <ProfileNavBar />

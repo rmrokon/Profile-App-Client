@@ -1,0 +1,16 @@
+.singleProfileContainer {
+    border: 1px solid rgb(23, 86, 86);
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    padding: 15px;
+}
+
+.singleProfileContainer>a {
+    text-decoration: none;
+}
+
+.singleProfileContainer>a>h3 {
+    margin: 0;
+    margin-bottom: 10px;
+}

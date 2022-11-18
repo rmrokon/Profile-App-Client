@@ -21,13 +21,10 @@ function About() {
         const url = `http://localhost:8000/api/profileAttributes/${profileAttribute?.id}`;
         if (profileAttribute?.id) {
             axios.put(url, { about: aboutInput, profile_id: profile?.id }).then(res => {
-                console.log(res.data);
                 setEditAbout(false);
             });
         }
     }
-
-    console.log(profileId, profile);
 
 
     const handleCancelEditAbout = () => {
@@ -38,9 +35,8 @@ function About() {
     const handleAddAbout = () => {
         const url = 'http://localhost:8000/api/profileAttributes';
         axios.post(url, { about: aboutInput, profile_id: profile?.id }).then(res => {
-            console.log('failed', res.data);
             if (res.status === 201) {
-                console.log('success', res.data);
+                setEditAbout(false);
             }
         });
     }
@@ -61,12 +57,12 @@ function About() {
                 {!profileAttribute && <p>Nothing to show! Update your about.</p>}
                 <button onClick={() => setEditAbout(true)}>Edit</button>
 
-                {!profileAttribute &&
+                {!profileAttribute && editAbout &&
                     <button
                         onClick={handleAddAbout}>Add About
                     </button>}
 
-                {editAbout &&
+                {editAbout && profileAttribute &&
                     <button
                         onClick={handleUpdateAbout}
                         className={styles.updateBtn}>Update

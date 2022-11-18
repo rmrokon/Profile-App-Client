@@ -59,8 +59,8 @@ function SocialLinks() {
     }
     return (
         <div>
-            <div>
-                <form action="" onSubmit={handleSubmit}>
+            <div className={styles.socialLinkFormContainer}>
+                <form className={styles.socialLinksForm} action="" onSubmit={handleSubmit}>
                     <div className={styles.socialHandles}>
                         <label>Facebook</label>
                         <input
@@ -101,9 +101,12 @@ function SocialLinks() {
                         />
                     }
 
-
                 </form>
-                <button onClick={() => setEdit(true)}>Edit</button>
+                <button
+                    className={styles.editBtn}
+                    onClick={() => setEdit(true)}
+                >Edit
+                </button>
                 {
                     edit &&
                     <button

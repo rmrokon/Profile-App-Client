@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { ProfileContext } from '../contexts/ProfileContext';
+import styles from './SingleProfile.module.css';
 
 function SingleProfile({ profile }) {
     const { username, active, user_id, id } = profile;
@@ -16,10 +17,15 @@ function SingleProfile({ profile }) {
 
     console.log(profile);
     return (
-        <div>
+        <div className={styles.singleProfileContainer}>
             <Link to={`/userProfile/${id}`}><h3>{username}</h3></Link>
-            <small>{active ? 'Active' : 'Deactivated'}</small>
-            <button onClick={() => signOut(auth)}>Logout</button>
+            <small
+                style={{ color: `${active ? 'green' : 'red'}`, marginRight: '10px' }}
+            >
+                {active ? 'Active' : 'Deactivated'}</small>
+            <button
+                onClick={() => signOut(auth)}
+            >Logout</button>
         </div>
     )
 }
