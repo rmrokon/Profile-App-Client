@@ -105,7 +105,7 @@ function SocialLinks() {
                 <button
                     className={styles.editBtn}
                     onClick={() => setEdit(true)}
-                >Edit
+                ><i class="fas fa-edit"></i> Edit
                 </button>
                 {
                     edit &&

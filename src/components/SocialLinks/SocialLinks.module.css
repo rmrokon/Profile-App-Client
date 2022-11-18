@@ -1,13 +1,22 @@
 .socialLinkFormContainer {
+    /* background-color: orange; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
+.socialLinksForm {
+    width: 35%;
+}
+
 .socialHandles {
+    width: 100%;
+    /* background-color: green; */
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-direction: column; */
     margin: 10px 0;
 }
 
@@ -15,6 +24,18 @@
     width: 20vw;
     height: 4vh;
     border: 1px solid slategray;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.socialHandles>input:focus {
+    outline: none;
+    border: 2px solid darkcyan;
+}
+
+.socialHandles>input:disabled {
+    background-color: rgba(128, 128, 128, 0.126);
+    border: none;
 }
 
 .socialLinksForm {
@@ -24,9 +45,21 @@
     align-items: center;
 }
 
-/* .saveBtn {
-    margin-top: 10px
-} */
+.saveBtn,
+.editBtn,
+.cancelBtn {
+    border: none;
+    color: darkcyan;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.saveBtn:hover,
+.editBtn:hover,
+.cancelBtn:hover {
+    color: white;
+    background-color: darkcyan;
+}
 
 .editBtn,
 .cancelBtn {

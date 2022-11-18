@@ -35,11 +35,35 @@
 }
 
 .profileName {
-    color: black;
+    color: rgb(9, 60, 60);
     margin-left: 1vw;
+
 }
 
 .profileInformation {
     position: static;
     margin-top: 25vh;
+}
+
+.changePhoto {
+    display: flex;
+}
+
+.changePhoto>button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: darkcyan;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.changePhoto>button:hover {
+    color: white;
+    background-color: darkcyan;
+}
+
+.changePhoto>button:active {
+    background-color: white;
+    color: darkcyan;
 }

@@ -66,11 +66,11 @@ function UserProfile() {
 
                             <img src={imageUrl} alt="" />
                             <input onChange={handleImageChange} style={{ display: 'none' }} type="file" name="" id="" placeholder='' ref={imageInputRef} />
-                            <div>
-                                <button className={styles.choosePhoto} onClick={handleChoosePhoto}>
+                            <div className={styles.changePhoto}>
+                                <button onClick={handleChoosePhoto}>
                                     Choose
                                 </button>
-                                <button className={styles.uploadPhoto} onClick={handleFileUpload}>Upload</button>
+                                <button onClick={handleFileUpload}>Upload</button>
                             </div>
                         </div>
                         <h4 className={styles.profileName}>{user?.displayName}</h4>

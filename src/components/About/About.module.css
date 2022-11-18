@@ -3,15 +3,36 @@
 }
 
 .aboutText {
+    margin-top: 16px;
     width: 60%;
     height: 15vh;
     border: 1px solid gray;
     border-radius: 4px;
     resize: vertical;
     padding: 5px;
+    text-align: center;
 }
 
 .aboutText:focus {
     border: 2px solid darkcyan;
     outline: none;
+}
+
+.aboutBtns>button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: darkcyan;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.aboutBtns>button:hover {
+    color: white;
+    background-color: darkcyan;
+}
+
+.aboutBtns>button:active {
+    background-color: white;
+    color: darkcyan;
 }

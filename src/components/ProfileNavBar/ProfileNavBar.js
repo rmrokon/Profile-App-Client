@@ -8,7 +8,7 @@ function ProfileNavBar() {
             <NavLink
                 style={({ isActive }) => {
                     return {
-                        color: isActive ? "blue" : "gray",
+                        color: isActive ? "darkcyan" : "gray",
                     };
                 }}
                 to='about'
@@ -16,7 +16,7 @@ function ProfileNavBar() {
             <NavLink
                 style={({ isActive }) => {
                     return {
-                        color: isActive ? "blue" : "gray",
+                        color: isActive ? "darkcyan" : "gray",
                     };
                 }}
                 to='socialLinks'
@@ -24,7 +24,7 @@ function ProfileNavBar() {
             <NavLink
                 style={({ isActive }) => {
                     return {
-                        color: isActive ? "blue" : "gray",
+                        color: isActive ? "darkcyan" : "gray",
                     };
                 }}
                 to='interests'

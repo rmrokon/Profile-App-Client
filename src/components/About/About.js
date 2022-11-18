@@ -55,10 +55,11 @@ function About() {
             />
             <div className={styles.aboutBtns}>
                 {!profileAttribute && <p>Nothing to show! Update your about.</p>}
-                <button onClick={() => setEditAbout(true)}>Edit</button>
+                <button onClick={() => setEditAbout(true)}><i class="fas fa-edit"></i> Edit</button>
 
                 {!profileAttribute && editAbout &&
                     <button
+                        className={styles}
                         onClick={handleAddAbout}>Add About
                     </button>}
 
