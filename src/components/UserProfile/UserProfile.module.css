@@ -14,6 +14,11 @@
     position: relative;
 }
 
+.coverPic>img {
+    width: 80vw;
+    height: 40vh;
+}
+
 .proPicAndNameContainer {
     display: flex;
     align-items: center;
@@ -24,7 +29,7 @@
 .proPic {
     height: 150px;
     width: 150px;
-    border: 5px solid white;
+    border: 3px solid darkcyan;
     border-radius: 50%;
 }
 
@@ -45,11 +50,23 @@
     margin-top: 25vh;
 }
 
-.changePhoto {
+
+.changeProfilePhoto {
     display: flex;
+    position: absolute;
+    bottom: -22%;
+    right: 48%;
 }
 
-.changePhoto>button {
+.changeCoverPhoto {
+    display: flex;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+
+.changeCoverPhoto>button,
+.changeProfilePhoto>button {
     border: none;
     padding: 8px 12px;
     border-radius: 8px;
@@ -58,12 +75,14 @@
     margin-right: 10px;
 }
 
-.changePhoto>button:hover {
+.changeCoverPhoto>button:hover,
+.changeProfilePhoto>button:hover {
     color: white;
     background-color: darkcyan;
 }
 
-.changePhoto>button:active {
+.changeCoverPhoto>button:active,
+.changeProfilePhoto>button:active {
     background-color: white;
     color: darkcyan;
 }

@@ -14,7 +14,8 @@ function UserProfile() {
     const { setProfile, profile } = useContext(ProfileContext);
     const [selectedFile, setSelectedFile] = useState(null);
     const imageInputRef = useRef(null);
-    const [imageUrl, setImageUrl] = useState('');
+    const [profileImageUrl, setProfileImageUrl] = useState('');
+    const [coverImageUrl, setCoverImageUrl] = useState('');
     const imageAPIkey = "ba174ce3bc57048f9cd66363c4b7ddfe";
 
     useEffect(() => {
@@ -29,10 +30,10 @@ function UserProfile() {
     if (loading) {
         return <h3>Loading...</h3>
     }
+
     const handleLogOut = () => {
         signOut(auth);
     }
-
 
     const handleImageChange = (e) => {
         setSelectedFile(e.target.files[0]);
@@ -42,7 +43,7 @@ function UserProfile() {
         return imageInputRef.current?.click();
     }
 
-    const handleFileUpload = () => {
+    const handleFileUpload = (picType) => {
         const formData = new FormData();
         formData.append('image', selectedFile, selectedFile.name);
         const url = `https://api.imgbb.com/1/upload?key=${imageAPIkey}`;
@@ -52,7 +53,9 @@ function UserProfile() {
         }).then(res => res.json()).then(result => {
             const image = result?.data?.url;
             console.log(image);
-            setImageUrl(image);
+
+            if (picType === 'propic') setProfileImageUrl(image);
+            if (picType === 'cover') setCoverImageUrl(image);
         })
     }
 
@@ -60,19 +63,29 @@ function UserProfile() {
         <div className={styles.profileContainer}>
             <button onClick={handleLogOut}>Logout</button>
             <header className={styles.profileHeaderContainer}>
+
                 <div className={styles.coverPic}>
+                    <img src={coverImageUrl} alt="" />
+                    <input onChange={handleImageChange} style={{ display: 'none' }} type="file" name="" id="" placeholder='' ref={imageInputRef} />
+                    <div className={styles.changeCoverPhoto}>
+                        <button onClick={handleChoosePhoto}>
+                            Choose Cover Photo
+                        </button>
+                        <button onClick={() => handleFileUpload('cover')}>Upload</button>
+                    </div>
+
                     <div className={styles.proPicAndNameContainer}>
                         <div className={styles.proPic}>
-
-                            <img src={imageUrl} alt="" />
+                            <img src={profileImageUrl} alt="" />
                             <input onChange={handleImageChange} style={{ display: 'none' }} type="file" name="" id="" placeholder='' ref={imageInputRef} />
-                            <div className={styles.changePhoto}>
+                            <div className={styles.changeProfilePhoto}>
                                 <button onClick={handleChoosePhoto}>
                                     Choose
                                 </button>
-                                <button onClick={handleFileUpload}>Upload</button>
+                                <button onClick={() => handleFileUpload('propic')}>Upload</button>
                             </div>
                         </div>
+
                         <h4 className={styles.profileName}>{user?.displayName}</h4>
                     </div>
                 </div>
